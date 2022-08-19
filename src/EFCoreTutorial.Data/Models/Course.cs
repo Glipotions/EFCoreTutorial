@@ -1,8 +1,4 @@
-﻿using EFCoreTutorial.Data.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace EFCoreTutorial.Data.Models
 {
     public class Course

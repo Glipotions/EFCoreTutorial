@@ -1,7 +1,21 @@
+using EFCoreTutorial.Common;
+using EFCoreTutorial.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllers();
+builder.Services.AddLogging();
+
+builder.Services.AddDbContext<ApplicationDbContext>(conf =>
+{
+    conf.UseSqlServer(StringConstants.DbConnectionString);
+    //
+    conf.EnableSensitiveDataLogging();
+});
+
 
 var app = builder.Build();
 
@@ -19,6 +33,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.MapRazorPages();
 
